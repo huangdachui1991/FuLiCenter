@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import cn.ucai.fulicenter.R;
+import cn.ucai.fulicenter.utils.MFGT;
 
 public class SplashActivity extends AppCompatActivity {
     private final  long sleepTime=2000;
@@ -22,6 +23,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 long start= System.currentTimeMillis();
+                //在完成一些功能之后判断超没超过闪屏时间2秒。超过继续闪频，没超过强行闪屏2秒
                 long costTime=System.currentTimeMillis()-start;
                 if(sleepTime-costTime>0){
                     try {
@@ -30,7 +32,8 @@ public class SplashActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-                startActivity(new Intent(SplashActivity.this,MainActivity.class));
+                MFGT.gotoMainActivity(SplashActivity.this);
+                MFGT.finish(SplashActivity.this);
             }
         }).start();
 
