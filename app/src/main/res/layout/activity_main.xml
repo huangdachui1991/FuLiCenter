@@ -16,11 +16,6 @@
         android:orientation="horizontal"
         android:gravity="center_vertical"
         >
-        <RadioGroup
-            android:id="@+id/rg_bottom_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
             <RadioButton
                 style="@style/menu_item_style"
                 android:text="新品"
@@ -77,10 +72,9 @@
                         android:gravity="center"
                         android:padding="2dp"
                         android:paddingLeft="50dp"
-                        android:text="1300"
+                        android:text="5"
                         android:textColor="#fff"
-                        android:textSize="12dp"
-                        android:visibility="gone" />
+                        android:textSize="12dp" />
                 </LinearLayout>
                 </RelativeLayout>
                 <RadioButton
@@ -91,7 +85,6 @@
                     android:button="@null"
                     android:textColor="@color/main_botton_text_color"
                     android:checked="false"/>
-        </RadioGroup>
     </LinearLayout>
     <View
         android:id="@+id/vline"
