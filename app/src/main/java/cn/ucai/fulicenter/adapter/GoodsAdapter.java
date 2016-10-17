@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -17,6 +18,7 @@ import butterknife.ButterKnife;
 import cn.ucai.fulicenter.I;
 import cn.ucai.fulicenter.R;
 import cn.ucai.fulicenter.bean.NewGoodsBean;
+import cn.ucai.fulicenter.utils.ImageLoader;
 
 /**
  * Created by Administrator on 2016/10/17.
@@ -28,6 +30,7 @@ public class GoodsAdapter extends Adapter {
     public GoodsAdapter(Context context, List<NewGoodsBean> list) {
         mContext = context;
         mList = list;
+        mList.addAll(list);
     }
 
     @Override
@@ -48,7 +51,7 @@ public class GoodsAdapter extends Adapter {
         }else {
             GoodsViewHolder gvh= (GoodsViewHolder) holder;
             NewGoodsBean goodsbean=mList.get(position);
-            //set image
+            ImageLoader.downloadImg(mContext,gvh.ivGoodsThumb,goodsbean.getGoodsThumb());
             gvh.tvGoodsName.setText(goodsbean.getGoodsName());
             gvh.tvGoodsPrice.setText(goodsbean.getCurrencyPrice());
         }
@@ -66,6 +69,14 @@ public class GoodsAdapter extends Adapter {
             return I.TYPE_FOOTER;
         }
         return I.TYPE_ITEM;
+    }
+    //从NewGOodsFragment中mAdapter的设置值处创建的方法
+    public void initData(ArrayList<NewGoodsBean> list) {
+        if(mList!=null){
+            mList.clear();
+        }
+        mList.addAll(list);
+        notifyDataSetChanged();
     }
 
     static class FooterViewHolder extends ViewHolder{
